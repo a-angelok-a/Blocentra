@@ -1,0 +1,27 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.dbmdl
+*.cache
+*.log
+
+# Build
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# VS Code / JetBrains
+.vscode/
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+
+# Temporary
+*.tmp
+*.bak
