@@ -34,7 +34,7 @@ namespace Blocentra.Services
                 var sym = symbol.Trim().ToUpperInvariant();
 
                 if (!SupportedSymbols.Contains(symbol.Trim().ToLowerInvariant()))
-                    return CryptoResult.Fail($"Неподдерживаемый символ: {symbol}");
+                    return CryptoResult.Fail($"Неподдерживаемый символ: {sym}");
 
                 string url = $"https://www.bitstamp.net/api/v2/ticker/{symbol}usd/";
 
