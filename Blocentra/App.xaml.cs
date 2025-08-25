@@ -18,9 +18,13 @@ namespace Blocentra
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IPriceAnalysisService, PriceAnalysisService>();
 
-            containerRegistry.Register<IWindowService, WindowService>();
-            containerRegistry.Register<ICryptoApiService, CoinGeckoApiService>();
+            containerRegistry.Register<ICryptoApiService, BitfinexApiService>("Bitfinex");
+            containerRegistry.Register<ICryptoApiService, CoinGeckoApiService>("CoinGecko");
+            containerRegistry.Register<ICryptoApiService, BitstampApiService>("Bitstamp");
+            containerRegistry.Register<ICryptoApiService, HuobiApiService>("Huobi");
+            containerRegistry.Register<ICryptoApiService, OkexApiService>("Okex");
 
             containerRegistry.RegisterInstance(new HttpClient());
             containerRegistry.RegisterForNavigation<SplashScreenView>();

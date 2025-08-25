@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 
+
 namespace Blocentra.Services
 {
     public class CoinGeckoApiService : ICryptoApiService
@@ -54,7 +55,8 @@ namespace Blocentra.Services
                 var currency = new CryptoCurrency
                 {
                     Symbol = symbol.ToUpper(),
-                    PriceUsd = price,
+                    BidPrice = price,   // нет bid в CoinGecko, поэтому ставим цену
+                    AskPrice = price,
                     ExchangeName = ExchangeName
                 };
                 return CryptoResult.Ok(currency);

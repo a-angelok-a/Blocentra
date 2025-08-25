@@ -4,7 +4,8 @@
     {
         public string Symbol { get; set; }
 
-        public decimal PriceUsd { get; set; }
+        public decimal BidPrice { get; set; }
+        public decimal AskPrice { get; set; }
 
         public string ExchangeName { get; set; }
 
