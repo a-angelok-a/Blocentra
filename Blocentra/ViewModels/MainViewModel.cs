@@ -1,4 +1,5 @@
-﻿using Blocentra.Models;
+﻿using Blocentra;
+using Blocentra.Models;
 using Blocentra.Services;
 using Blocentra.Views;
 using System.Collections.ObjectModel;
