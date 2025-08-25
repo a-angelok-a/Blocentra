@@ -18,6 +18,9 @@ namespace Blocentra
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+
+            containerRegistry.Register<ICryptoHistoryService, CryptoHistoryService>();
+            containerRegistry.Register<ITimeSeriesPredictionService, TimeSeriesPredictionService>();
             containerRegistry.Register<IPriceAnalysisService, PriceAnalysisService>();
 
             containerRegistry.Register<ICryptoApiService, BitfinexApiService>("Bitfinex");
