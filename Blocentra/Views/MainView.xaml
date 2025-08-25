@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blocentra.Views"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Grid>
+        xmlns:prism="http://prismlibrary.com/"
+        Title="MainView" 
+        MinHeight="100" 
+        MinWidth="428"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
 
+    <Grid>
+        <Border Background="#282D33"
+        BorderBrush="#3A4149"
+        BorderThickness="5"
+        CornerRadius="8,8,0,8" />
+
+
+        <DockPanel>
+            <ContentControl prism:RegionManager.RegionName="HeaderRegion" DockPanel.Dock="Top"/>
+            <ContentControl prism:RegionManager.RegionName="SplashScreenRegion"/>
+        </DockPanel>
     </Grid>
 </Window>

@@ -1,17 +1,35 @@
-﻿using Blocentra.Views;
+﻿using Blocentra.Services;
+using Blocentra.ViewModels;
+using Blocentra.Views;
 using System.Windows;
 
 namespace Blocentra
 {
     public partial class App : PrismApplication
     {
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-
-        }
         protected override Window CreateShell()
         {
-            return ContainerLocator.Container.Resolve<MainView>();
+            var window = Container.Resolve<MainView>();
+            Container.GetContainer().RegisterInstance<IWindowService>(new WindowService(window));
+            return window;
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterSingleton<MainViewModel>();
+            containerRegistry.Register<IWindowService, WindowService>();
+
+            containerRegistry.RegisterForNavigation<SplashScreenView>();
+            containerRegistry.RegisterForNavigation<HeaderView>();
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+
+            var regionManager = Container.Resolve<IRegionManager>();
+            regionManager.RequestNavigate("SplashScreenRegion", nameof(SplashScreenView));
         }
     }
 }
