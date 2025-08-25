@@ -1,15 +1,54 @@
-﻿using Blocentra.Views;
+﻿using Blocentra.Services;
+using Blocentra.Views;
+using System.Collections.ObjectModel;
 
 namespace Blocentra.ViewModels
 {
     public class MainViewModel : BindableBase
     {
+        private readonly ICryptoApiService _apiService;
         private readonly IRegionManager _regionManager;
 
-        public MainViewModel(IRegionManager regionManager)
+        private string _symbol = "btc";
+        public string Symbol
         {
+            get => _symbol;
+            set => SetProperty(ref _symbol, value);
+        }
+
+        private string _priceInfo;
+        public string PriceInfo
+        {
+            get => _priceInfo;
+            set => SetProperty(ref _priceInfo, value);
+        }
+
+        public ObservableCollection<string> Currencies { get; } = new()
+        {
+            "bitcoin",
+            "ethereum",
+            "ripple",
+            "litecoin",
+            "cardano",
+            "dogecoin",
+            "polkadot",
+            "stellar",
+            "chainlink",
+            "binancecoin"
+        };
+        public MainViewModel(IRegionManager regionManager, ICryptoApiService apiService)
+        {
+            _apiService = apiService;
             _regionManager = regionManager;
             InitializeApp();
+        }
+        public async Task LoadCurrencyAsync()
+        {
+            var result = await _apiService.GetCurrencyAsync(Symbol);
+
+            PriceInfo = result.IsSuccess
+                ? $"{result.Currency.Symbol}: {result.Currency.PriceUsd} USD ({result.Currency.ExchangeName})"
+                : $"Ошибка: {result.ErrorMessage}";
         }
 
         private async void InitializeApp()
@@ -21,6 +60,8 @@ namespace Blocentra.ViewModels
 
 
             _regionManager.RequestNavigate("HeaderRegion", nameof(HeaderView));
+            await LoadCurrencyAsync();
+
         }
     }
 }

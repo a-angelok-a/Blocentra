@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800">
-    <Grid Background="#13182A">
-        <Image Source="pack://application:,,,/Blocentra;component/Images/Blocentra.png"
-           Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Background="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Source="/Blocentra;component/Images/Blocentra.png" 
+               Stretch="UniformToFill" Margin="-104,-17,-103,-17"/>
     </Grid>
 </UserControl>

@@ -1,6 +1,6 @@
 ﻿using Blocentra.Services;
-using Blocentra.ViewModels;
 using Blocentra.Views;
+using System.Net.Http;
 using System.Windows;
 
 namespace Blocentra
@@ -10,15 +10,19 @@ namespace Blocentra
         protected override Window CreateShell()
         {
             var window = Container.Resolve<MainView>();
+
             Container.GetContainer().RegisterInstance<IWindowService>(new WindowService(window));
+
             return window;
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<MainViewModel>();
-            containerRegistry.Register<IWindowService, WindowService>();
 
+            containerRegistry.Register<IWindowService, WindowService>();
+            containerRegistry.Register<ICryptoApiService, CoinGeckoApiService>();
+
+            containerRegistry.RegisterInstance(new HttpClient());
             containerRegistry.RegisterForNavigation<SplashScreenView>();
             containerRegistry.RegisterForNavigation<HeaderView>();
         }
@@ -26,10 +30,10 @@ namespace Blocentra
         protected override void OnInitialized()
         {
             base.OnInitialized();
-
-
             var regionManager = Container.Resolve<IRegionManager>();
+
             regionManager.RequestNavigate("SplashScreenRegion", nameof(SplashScreenView));
         }
     }
+
 }
