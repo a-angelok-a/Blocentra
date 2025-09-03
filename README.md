@@ -2,8 +2,8 @@
 
 A WPF application for cryptocurrency price tracking, analysis, and forecasting. Supports multiple exchanges such as Bitfinex, Bitstamp, CoinGecko, Huobi, and Okex. The app provides real-time price comparison, historical data storage, and predictive analytics using ML.NET time series forecasting.
 
-![Splash Screen](SplashScreen.png)
-![Main View](MainView.png)
+![Splash Screen](assets/SplashScreen.png)
+![Main View](assets/MainView.png)
 
 ## Features
 
